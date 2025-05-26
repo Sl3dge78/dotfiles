@@ -17,19 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
-        {   'morhetz/gruvbox', 
-            lazy = false,
-            priority = 1000,
-            config = function() 
-                vim.g.gruvbox_bold = 0
-                vim.cmd.colorscheme("gruvbox")
-            end
-        },
-        {   'vim-airline/vim-airline',
-            config = function()
-                vim.g.airline_symbols_ascii=1
-            end
-        },
+        { "catppuccin/nvim", name = "catppuccin", priority = 1000, },
         'kdheepak/lazygit.nvim',
         'tpope/vim-dispatch',
         'nvim-lua/plenary.nvim',
@@ -73,7 +61,17 @@ vim.opt.autoread=true
 vim.opt.autowrite=true
 vim.opt.number=true
 
+
 vim.api.nvim_set_option("clipboard", "unnamedplus")
+
+
+require("catppuccin").setup({
+    flavour = "macchiato",
+    no_bold = true,
+    no_italic = true,
+})
+
+vim.cmd.colorscheme("catppuccin")
 
 -- Looping cnext/cprev
 vim.keymap.set('n', '<Leader>n', function(args) 
