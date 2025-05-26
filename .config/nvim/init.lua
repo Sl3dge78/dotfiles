@@ -73,6 +73,8 @@ vim.opt.autoread=true
 vim.opt.autowrite=true
 vim.opt.number=true
 
+vim.api.nvim_set_option("clipboard", "unnamedplus")
+
 -- Looping cnext/cprev
 vim.keymap.set('n', '<Leader>n', function(args) 
     if not pcall(vim.cmd, 'cnext') then 
