@@ -1,0 +1,19 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sdd2
+UUID=106ed61f-e563-4d9d-ae72-bd464f07558d	/         	ext4      	rw,relatime	0 1
+
+# /dev/sdd1
+UUID=F472-AFDE      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# Unix
+UUID=85e88156-42b5-4b94-89d4-4709e36b72ed	/mnt/unix	ext4	nosuid,nodev,nofail	0 0
+
+# Multimedia
+UUID=AECEE4A9CEE46AD3	/mnt/multimedia	ntfs	nosuid,nodev,nofail	0 2
+
+# BUREAUTIQUE
+UUID=06CEDC2ACEDC1431 /mnt/bureautique	ntfs	nosuid,nodev,nofail	0 2
+
