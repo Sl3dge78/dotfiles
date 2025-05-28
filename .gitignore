@@ -1,2 +1,6 @@
-*/
-!.config/
+/*
+!/.config
+.config/chromium
+!/fstab
+!.bashrc
+discord/
