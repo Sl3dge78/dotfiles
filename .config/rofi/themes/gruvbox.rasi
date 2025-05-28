@@ -1,0 +1,9 @@
+
+* {
+    bg0:     #282828;
+    bg1:     #3c3836;
+    fg0:     #dbdbb2;
+    selected-color:   #458588;
+    accent-color:     #d65d0e;
+    urgent-color:     #d79921;
+}

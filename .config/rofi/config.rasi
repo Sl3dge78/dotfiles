@@ -1,14 +1,10 @@
+@import "themes/catppuccin-macchiato"
+/*
+@import "themes/gruvbox"
+*/
 
 * {
-    font:   "GohuFont 11";
-
-    bg0:     #282828;
-    bg1:     #3c3836;
-    fg0:     #dbdbb2;
-
-    selected-color:   #458588;
-    accent-color:     #d65d0e;
-    urgent-color:     #d79921;
+    font:   "GohuFont 14 Nerd Font 10.5";
 
     background-color:   transparent;
     text-color:         @fg0;
@@ -20,7 +16,8 @@
 
 window {
     location:   north;
-    width:      200;
+    width:      300;
+    y-offset: 5%;
 
     background-color:   @bg0;
     border: 1px;
@@ -93,12 +90,9 @@ element alternate normal {
     text-color : @fg0;
 }
 
-element selected {
-    text-color: @fg0;
-}
-
 element selected normal, element selected active {
     background-color:   @selected-color;
+    text-color: @bg0;
 }
 
 element selected urgent {
