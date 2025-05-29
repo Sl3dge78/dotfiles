@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 });
 
-local jai_location = "D:/_Guigui/_Bordel/__/jai"
+local jai_location = "~/Programs/jai/"
 
 function jai_search(args)
     for k, v in ipairs(args) do
