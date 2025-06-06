@@ -30,7 +30,38 @@ require("lazy").setup({
         'tikhomirov/vim-glsl',
         'rmagatti/auto-session',
         'sheerun/vim-polyglot',
-        'neovim/nvim-lspconfig',
+        {
+            "VonHeikemen/lsp-zero.nvim",
+            branch = "v2.x",
+            config = false,
+            init = function()
+                -- Disable automatic setup, we are doing it manually
+                vim.g.lsp_zero_extend_cmp = 0
+                vim.g.lsp_zero_extend_lspconfig = 0
+            end,
+        },
+        { 
+            'neovim/nvim-lspconfig',
+            config = function () 
+                local lsp = require("lsp-zero")
+                local lspconfig = require("lspconfig")
+                lsp.extend_lspconfig()
+
+                local configs = require("lspconfig.configs")
+                if not configs.jails then
+                    configs.jails = {
+                        default_config = {
+                            cmd = { "jails" },
+                            root_dir = lspconfig.util.root_pattern("jails.json", "build.jai", "main.jai"),
+                            filetypes = { "jai" },
+                            name = "Jails",
+                        },
+                    }
+                end
+                lspconfig.jails.setup({})
+
+            end
+        },
         'echasnovski/mini.nvim',
         'rmagatti/auto-session',
     },
@@ -38,7 +69,7 @@ require("lazy").setup({
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "gruvbox" } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = { enabled = false },
 })
 
 vim.opt.signcolumn="number"
@@ -73,6 +104,12 @@ require("catppuccin").setup({
 
 vim.cmd.colorscheme("catppuccin")
 
+-- Resize windows
+vim.keymap.set('n', '<C-Up>', '<C-w>+')
+vim.keymap.set('n', '<C-Down>', '<C-w>-')
+vim.keymap.set('n', '<C-Left>', '<C-w><')
+vim.keymap.set('n', '<C-Right>', '<C-w>>')
+
 -- Looping cnext/cprev
 vim.keymap.set('n', '<Leader>n', function(args) 
     if not pcall(vim.cmd, 'cnext') then 
@@ -104,7 +141,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 });
 
-local jai_location = "~/Programs/jai/"
+local jai_location = "~/Programs/jai/modules/"
 
 function jai_search(args)
     for k, v in ipairs(args) do
@@ -157,6 +194,11 @@ lspconfig['csharp_ls'].setup {
 }
 lspconfig['clangd'].setup{
     on_attach = on_attach,
+}
+lspconfig['jails'].setup {
+    on_attach = on_attach,
+    cmd = { "jails" },
+
 }
 
 -- require('telescope').setup{ file_ignore_patterns = { "Library" } }
