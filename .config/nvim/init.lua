@@ -17,7 +17,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
-        { "catppuccin/nvim", name = "catppuccin", priority = 1000, },
+        { 
+            "catppuccin/nvim",
+            name = "catppuccin",
+            priority = 1000,
+        },
         'kdheepak/lazygit.nvim',
         'tpope/vim-dispatch',
         'nvim-lua/plenary.nvim',
@@ -65,11 +69,6 @@ require("lazy").setup({
         'echasnovski/mini.nvim',
         'rmagatti/auto-session',
     },
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "gruvbox" } },
-    -- automatically check for plugin updates
-    checker = { enabled = false },
 })
 
 vim.opt.signcolumn="number"
@@ -100,6 +99,9 @@ require("catppuccin").setup({
     flavour = "macchiato",
     no_bold = true,
     no_italic = true,
+    dim_inactive = {
+        enabled = true,
+    },
 })
 
 vim.cmd.colorscheme("catppuccin")
