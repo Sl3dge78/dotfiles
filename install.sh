@@ -21,7 +21,9 @@ sudo pacman -S wget\
     wl-clipboard \
     qt5-wayland \
     qt6-wayland \
-    bash-completion
+    bash-completion \
+    nemo \
+    ranger 
 
 yay -S gohufont \
     darkly \
