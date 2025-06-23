@@ -1,0 +1,14 @@
+catppuccin-cursors-macchiato
+catppuccin-gtk-theme-macchiato
+catppuccin-sddm-theme-macchiato
+darkly
+downgrade
+gohufont
+mint-themes
+mint-y-icons
+pcsx2
+qt6ct-kde
+v4l2loopback-dkms-git
+visual-studio-code-bin
+yay
+yay-debug
