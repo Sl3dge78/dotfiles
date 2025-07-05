@@ -1,0 +1,8 @@
+theme = "catppuccin_macchiato"
+[editor]
+auto-format = false
+auto-pairs = false
+
+[editor.cursor-shape]
+insert = "bar"
+
