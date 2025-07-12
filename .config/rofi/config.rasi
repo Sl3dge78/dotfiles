@@ -1,7 +1,5 @@
-@import "themes/catppuccin-macchiato"
-/*
+// @import "themes/catppuccin-macchiato"
 @import "themes/gruvbox"
-*/
 
 * {
     font:   "GohuFont 14 Nerd Font 10.5";

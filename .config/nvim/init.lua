@@ -104,7 +104,7 @@ require("catppuccin").setup({
     },
 })
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("retrobox")
 
 -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>+')
@@ -143,7 +143,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 });
 
-local jai_location = "~/Programs/jai/modules/"
+local jai_location = "/opt/jai/modules/"
 
 function jai_search(args)
     for k, v in ipairs(args) do
