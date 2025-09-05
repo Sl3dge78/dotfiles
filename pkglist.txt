@@ -1,61 +1,103 @@
-7zip
-adobe-source-code-pro-fonts
-alacritty
-bash-completion
-chromium
-cinnamon
-clang
-discord
-dunst
-efibootmgr
-firefox
-git
-htop
-hyprland
-hyprpaper
-hyprshot
-imv
-iwd
-jdk-openjdk
-lazygit
-libc++
-llvm
-man-db
-nano
-nemo
-neovim
-noto-fonts-emoji
-obs-studio
-openssh
-pavucontrol
-polkit-kde-agent
-pulseaudio
-qbittorrent
-qt5-wayland
-qt5ct
-qt6-wayland
-ranger
-rofi
-samba
-sddm
-slurp
-smartmontools
-steam
-syncthing
-torbrowser-launcher
-ttf-gohu-nerd
-unzip
-vim
-vlc
-waybar
-wget
-wireless_tools
-wl-clipboard
-wofi
-wpa_supplicant
-wsdd
-xdg-desktop-portal-gtk
-xdg-desktop-portal-hyprland
-xdg-utils
-xorg-server
-xorg-xinit
+7zip 25.01-1
+adobe-source-code-pro-fonts 2.042u+1.062i+1.026vf-2
+alacritty 0.15.1-1
+amd-ucode 20250808-1
+android-file-transfer 4.5-2
+base 3-2
+base-devel 1-2
+bash-completion 2.16.0-1
+btop 1.4.4-1
+chromium 139.0.7258.154-1
+clang 20.1.8-1
+cmake 4.1.1-1
+discord 1:0.0.108-1
+dkms 3.2.1-1
+dosfstools 4.2-5
+dotnet-runtime 9.0.8.sdk109-1
+dotnet-sdk 9.0.8.sdk109-1
+dunst 1.13.0-1
+efibootmgr 18-3
+feh 3.10.3-1
+firefox 142.0.1-1
+fuse2 2.9.9-5
+gamescope 3.16.15-1
+gdb 16.3-1
+git 2.51.0-1
+gnome-disk-utility 46.1-2
+grim 1.5.0-2
+htop 3.4.1-1
+i3-wm 4.24-1
+i3blocks 1.5-4
+i3lock 2.15-3
+i3status 2.15-1
+imv 4.5.0-5
+iwd 3.9-1
+jdk-openjdk 24.0.2.u12-1
+lazygit 0.54.2-1
+libc++ 20.1.6-2
+libva-nvidia-driver 0.0.14-1
+linux 6.16.4.arch1-1
+linux-firmware 20250808-1
+linux-headers 6.16.4.arch1-1
+llvm 20.1.8-1
+maim 5.8.1-2
+man-db 2.13.1-1
+nano 8.6-1
+ncdu 2.8.2-3
+nemo 6.4.5-1
+nemo-fileroller 6.4.0-3
+neovide 0.15.0-1
+neovim 0.11.4-1
+noto-fonts-emoji 1:2.048-1
+nvidia-dkms 580.76.05-4
+obs-studio 31.1.2-1
+openssh 10.0p1-4
+pavucontrol 1:6.1-1
+peek 1.5.1-4
+picom 12.5-3
+polkit-kde-agent 6.4.4-1
+qbittorrent 5.1.2-1
+qt5-wayland 5.15.17+kde+r57-1
+qt6-wayland 6.9.2-1
+qutebrowser 3.5.1-2
+ranger 1.9.4-4
+renderdoc 1.39-1
+rofi-wayland 1.7.9.1-1
+rustup 1.28.2-3
+samba 2:4.22.4-1
+sddm 0.21.0-6
+slurp 1.5.0-1
+smartmontools 7.5-1
+spirv-headers 1:1.4.321.0-1
+steam 1.0.0.82-2
+syncthing 2.0.3-1
+ttf-gohu-nerd 3.4.0-1
+ttf-jetbrains-mono 2.304-2
+ttf-proggyclean-nerd 3.4.0-1
+unrar 1:7.1.10-1
+unzip 6.0-23
+vim 9.1.1623-1
+vlc 3.0.21-28
+volk 1.4.321.0-1
+vulkan-extra-layers 1.4.321.0-1
+vulkan-extra-tools 1.4.321.0-1
+vulkan-headers 1:1.4.321.0-1
+vulkan-html-docs 1:1.4.321-1
+vulkan-utility-libraries 1.4.321.0-1
+vulkan-validation-layers 1.4.321.0-1
+wget 1.25.0-2
+wine 10.14-1
+wireless_tools 30.pre9-4
+wl-clipboard 1:2.2.1-3
+wofi 1.5.1-1
+wpa_supplicant 2:2.11-3
+wsdd 0.9-1
+xclip 0.13-6
+xdg-desktop-portal-gtk 1.15.3-1
+xdg-desktop-portal-hyprland 1.3.10-1
+xdg-utils 1.2.1-1
+xorg-server 21.1.18-2
+xorg-xinit 1.4.4-1
+xwayland-satellite 0.7-1
+zed 0.201.8-1
+zram-generator 1.2.1-1

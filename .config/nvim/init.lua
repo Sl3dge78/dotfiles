@@ -22,6 +22,10 @@ require("lazy").setup({
             name = "catppuccin",
             priority = 1000,
         },
+        { 
+            "ellisonleao/gruvbox.nvim",
+            priority = 1000,
+        },
         'kdheepak/lazygit.nvim',
         'tpope/vim-dispatch',
         'nvim-lua/plenary.nvim',
@@ -68,8 +72,17 @@ require("lazy").setup({
         },
         'echasnovski/mini.nvim',
         'rmagatti/auto-session',
+        "karb94/neoscroll.nvim",
     },
 })
+
+if vim.g.neovide then
+    vim.o.guifont = "ProggyCleanTT:h12"
+    vim.g.neovide_scroll_animation_length = 0.1
+    vim.g.neovide_hide_mouse_when_typing = true
+    vim.g.neovide_cursor_trail_size = 0.5
+    vim.g.neovide_confirm_quit = false
+end
 
 vim.opt.signcolumn="number"
 
@@ -90,9 +103,14 @@ vim.opt.breakindentopt="shift:2,sbr"
 vim.opt.autoread=true
 vim.opt.autowrite=true
 vim.opt.number=true
+vim.opt.hlsearch=false
 
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
+
+require('editorconfig').properties.makeprg = function(bufnr, val, opts)
+    vim.opt.makeprg=val
+end
 
 
 require("catppuccin").setup({
@@ -104,7 +122,39 @@ require("catppuccin").setup({
     },
 })
 
-vim.cmd.colorscheme("retrobox")
+require("gruvbox").setup({
+    bold = false,
+    italic = {
+        strings = false,
+        emphasis = false,
+        comments = false,
+        folds = false,
+    },
+
+})
+
+require('neoscroll').setup({
+  mappings = {                 -- Keys to be mapped to their corresponding default scrolling animation
+    '<C-u>', '<C-d>',
+    '<C-b>', '<C-f>',
+    '<C-y>', '<C-e>',
+    'zt', 'zz', 'zb',
+  },
+  hide_cursor = true,          -- Hide cursor while scrolling
+  stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+  respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+  cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+  duration_multiplier = 0.1,   -- Global duration multiplier
+  easing = 'cubic',           -- Default easing function
+  pre_hook = nil,              -- Function to run before the scrolling animation starts
+  post_hook = nil,             -- Function to run after the scrolling animation ends
+  performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+  ignored_events = {           -- Events ignored while scrolling
+      'WinScrolled', 'CursorMoved'
+  },
+})
+
+vim.cmd.colorscheme("gruvbox")
 
 -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>+')
@@ -139,7 +189,11 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     pattern = "*.jai",
     callback = function(e) 
         vim.opt.filetype="jai"
-        vim.cmd("compiler jai")
+        vim.opt.efm = [[%f:%l\,%c: %m]]
+            -- "%f:%l,%c: Error: %m",
+            -- "%f:%l,%c: %m",
+            -- "%m (%f:%l)"
+        vim.opt.commentstring="// %s"
     end
 });
 
@@ -153,11 +207,18 @@ function jai_search(args)
 end
 vim.api.nvim_create_user_command("JaiFind", jai_search, { nargs = 1 })
 
+
 -- Telescope
 local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<F1>', telescope.find_files, { desc = "Telescope find files" })
+
+function jai_grep()
+    telescope.live_grep({ cwd = jai_location })
+end
+
+vim.keymap.set('n', '<F1>', telescope.git_files, { desc = "Telescope find files" })
 vim.keymap.set('n', '<F2>', telescope.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set('n', '<F3>', telescope.grep_string, { desc = "Telescope grep string" })
+vim.keymap.set('n', '<F4>', jai_grep, { desc = "Grep jai" })
 
 -- LSP
 local lspconfig = require('lspconfig')
@@ -204,5 +265,7 @@ lspconfig['jails'].setup {
 }
 
 -- require('telescope').setup{ file_ignore_patterns = { "Library" } }
-require('mini.completion').setup()
+require('mini.completion').setup({
+    delay = { completion = 10^7 }
+})
 require('auto-session').setup()

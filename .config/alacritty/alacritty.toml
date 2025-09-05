@@ -5,8 +5,11 @@ startup_mode = "Maximized"
 # size = 10
 # normal = { family = "Gohu GohuFont" }
 
-size = 8
-normal = { family = "IBM VGA 8x16" }
+size = 12
+normal = { family = "ProggyCleanTT" }
+
+# size = 8
+# normal = { family = "IBM VGA 8x16" }
 bold = { style = "Regular" }
 
 [mouse]

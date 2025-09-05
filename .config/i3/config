@@ -38,6 +38,7 @@ exec --no-startup-id nm-applet
 
 # Compositor
 exec --no-startup-id picom -b
+exec --no-startup-id xset -s off
 
 exec --no-startup-id xrandr --output DVI-D-0 --left-of HDMI-0
 
@@ -216,6 +217,7 @@ bindsym $mod+Shift+z mode "resize"
 # --------
 # THEME
 set $bg #282828
+set $fg #ebdbb2
 set $red #cc241d
 set $green #98971a
 set $yellow #d79921
@@ -244,11 +246,11 @@ bar {
         # bar background color
         background $bg
         # text color used for blocks that do not have a color specified.
-        statusline $yellow
+        statusline $fg
         # workspaces section            
         #                    border  backgr. text
         focused_workspace    $aqua $aqua $darkgray
-        inactive_workspace   $darkgray $darkgray $yellow
+        inactive_workspace   $darkgray $darkgray $gray
         active_workspace     $darkgray $darkgray $yellow
         urgent_workspace     $red $red $bg
     }

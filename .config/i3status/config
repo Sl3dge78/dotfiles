@@ -14,8 +14,6 @@ general {
         interval = 5
 }
 
-
-
 order += "tztime local"
 
 tztime local {

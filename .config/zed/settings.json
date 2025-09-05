@@ -1,0 +1,46 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  // "buffer_font_size": 12,
+  // "buffer_font_family": "GohuFont 11 Nerd Font",
+  // "buffer_font_size": 14.14,
+  // "buffer_font_family": "GohuFont 14 Nerd Font",
+  "buffer_font_size": 12,
+  "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_size": 15.801,
+  // "buffer_font_family": "ProggyCleanTT",
+  "buffer_line_height": "standard",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Nord"
+  },
+  "use_autoclose": false,
+  "experimental.theme_overrides": {
+    "syntax": {
+      // "conditional": { "color": "#fb4934" },
+      // "repeat": { "color": "#fb4934" },
+      // "constant": { "color": "#ebdbb2" }
+      "conditional": { "color": "#81a1c1" },
+      "repeat": { "color": "#81a1c1" },
+      "constant": { "color": "#d8dee9" }
+    }
+  },
+  "languages": {
+    "Jai": {
+      "enable_language_server": false
+    }
+  }
+}
