@@ -7,6 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "disable_ai": true,
+  "minimap": {
+    "show": "never"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+      "delay_ms": 0,
+      "padding": 7,
+      "min_column": 0,
+      "show_commit_summary": false
+    }
+  },
+  "format_on_save": "off",
+  "buffer_font_features": {
+    "calt": 0
+  },
   "telemetry": {
     "metrics": false,
     "diagnostics": false
@@ -17,15 +34,17 @@
   // "buffer_font_family": "GohuFont 11 Nerd Font",
   // "buffer_font_size": 14.14,
   // "buffer_font_family": "GohuFont 14 Nerd Font",
-  "buffer_font_size": 12,
-  "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_size": 12,
+  // "buffer_font_family": "JetBrains Mono",
   // "buffer_font_size": 15.801,
   // "buffer_font_family": "ProggyCleanTT",
+  "buffer_font_size": 14,
+  "buffer_font_family": "Liberation Mono",
   "buffer_line_height": "standard",
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "Nord"
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark"
   },
   "use_autoclose": false,
   "experimental.theme_overrides": {

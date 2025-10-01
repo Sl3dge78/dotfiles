@@ -1,0 +1,12 @@
+[Appearance]
+HideSkinBorders=true
+Translucency=true
+
+[Dialogs]
+FirstRun=false
+
+[Window]
+Height=83
+KeepOpenAfterLastSessionCloses=true
+ShowTabBar=false
+Width=100

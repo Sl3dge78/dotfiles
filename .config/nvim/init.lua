@@ -66,7 +66,7 @@ require("lazy").setup({
                         },
                     }
                 end
-                lspconfig.jails.setup({})
+                -- lspconfig.jails.setup({})
 
             end
         },
@@ -77,7 +77,7 @@ require("lazy").setup({
 })
 
 if vim.g.neovide then
-    vim.o.guifont = "ProggyCleanTT:h12"
+    vim.o.guifont = "Source Code Pro:h11"
     vim.g.neovide_scroll_animation_length = 0.1
     vim.g.neovide_hide_mouse_when_typing = true
     vim.g.neovide_cursor_trail_size = 0.5
@@ -258,11 +258,10 @@ lspconfig['csharp_ls'].setup {
 lspconfig['clangd'].setup{
     on_attach = on_attach,
 }
-lspconfig['jails'].setup {
-    on_attach = on_attach,
-    cmd = { "jails" },
-
-}
+-- lspconfig['jails'].setup {
+--     on_attach = on_attach,
+--     cmd = { "jails" },
+-- }
 
 -- require('telescope').setup{ file_ignore_patterns = { "Library" } }
 require('mini.completion').setup({
