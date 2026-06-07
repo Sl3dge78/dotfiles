@@ -1,79 +1,27 @@
--- Lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-                { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-                { out, "WarningMsg" },
-                { "\nPress any key to exit..." },
-            }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-    spec = {
+vim.pack.add({
         { 
-            "catppuccin/nvim",
+            src = "https://github.com/catppuccin/nvim",
             name = "catppuccin",
-            priority = 1000,
         },
         { 
-            "ellisonleao/gruvbox.nvim",
-            priority = 1000,
+            src = "https://github.com/ellisonleao/gruvbox.nvim",
         },
-        'kdheepak/lazygit.nvim',
-        'tpope/vim-dispatch',
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim',
-        {   'rluba/jai.vim',
-            lazy = false,
+        'https://github.com/kdheepak/lazygit.nvim',
+        'https://github.com/tpope/vim-dispatch',
+        'https://github.com/nvim-lua/plenary.nvim',
+        'https://github.com/nvim-telescope/telescope.nvim',
+        {   
+            src = 'https://github.com/rluba/jai.vim',
         },
-        'ziglang/zig.vim',
-        'rust-lang/rust.vim',
-        'tikhomirov/vim-glsl',
-        'rmagatti/auto-session',
-        'sheerun/vim-polyglot',
-        {
-            "VonHeikemen/lsp-zero.nvim",
-            branch = "v2.x",
-            config = false,
-            init = function()
-                -- Disable automatic setup, we are doing it manually
-                vim.g.lsp_zero_extend_cmp = 0
-                vim.g.lsp_zero_extend_lspconfig = 0
-            end,
-        },
-        { 
-            'neovim/nvim-lspconfig',
-            config = function () 
-                local lsp = require("lsp-zero")
-                local lspconfig = require("lspconfig")
-                lsp.extend_lspconfig()
-
-                local configs = require("lspconfig.configs")
-                if not configs.jails then
-                    configs.jails = {
-                        default_config = {
-                            cmd = { "jails" },
-                            root_dir = lspconfig.util.root_pattern("jails.json", "build.jai", "main.jai"),
-                            filetypes = { "jai" },
-                            name = "Jails",
-                        },
-                    }
-                end
-                -- lspconfig.jails.setup({})
-
-            end
-        },
-        'echasnovski/mini.nvim',
-        'rmagatti/auto-session',
-        "karb94/neoscroll.nvim",
-    },
+        'https://github.com/ziglang/zig.vim',
+        'https://github.com/rust-lang/rust.vim',
+        'https://github.com/tikhomirov/vim-glsl',
+        'https://github.com/rmagatti/auto-session',
+        'https://github.com/sheerun/vim-polyglot',
+        'https://github.com/echasnovski/mini.nvim',
+        'https://github.com/rmagatti/auto-session',
+        "https://github.com/karb94/neoscroll.nvim",
+        "https://github.com/teal-language/vim-teal",
 })
 
 if vim.g.neovide then
@@ -104,11 +52,14 @@ vim.opt.autoread=true
 vim.opt.autowrite=true
 vim.opt.number=true
 vim.opt.hlsearch=false
+vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+-- vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 require('editorconfig').properties.makeprg = function(bufnr, val, opts)
+    vim.print('makeprg = ' .. val)
     vim.opt.makeprg=val
 end
 
@@ -123,15 +74,17 @@ require("catppuccin").setup({
 })
 
 require("gruvbox").setup({
+    transparent = true,
     bold = false,
-    italic = {
-        strings = false,
-        emphasis = false,
-        comments = false,
-        folds = false,
-    },
-
+    -- italic = {
+    --     strings = false,
+    --     emphasis = false,
+    --     comments = false,
+    --     folds = false,
+    -- },
+    contrast="",
 })
+vim.cmd.colorscheme("gruvbox")
 
 require('neoscroll').setup({
   mappings = {                 -- Keys to be mapped to their corresponding default scrolling animation
@@ -154,7 +107,6 @@ require('neoscroll').setup({
   },
 })
 
-vim.cmd.colorscheme("gruvbox")
 
 -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>+')
@@ -197,7 +149,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 });
 
-local jai_location = "/opt/jai/modules/"
+local jai_location = "/home/sl3dge/Downloads/jai/modules/"
 
 function jai_search(args)
     for k, v in ipairs(args) do
@@ -215,13 +167,35 @@ function jai_grep()
     telescope.live_grep({ cwd = jai_location })
 end
 
+function live_grep_from_project_git_root()
+	local function is_git_repo()
+		vim.fn.system("git rev-parse --is-inside-work-tree")
+
+		return vim.v.shell_error == 0
+	end
+
+	local function get_git_root()
+		local dot_git_path = vim.fn.finddir(".git", ".;")
+		return vim.fn.fnamemodify(dot_git_path, ":h")
+	end
+
+	local opts = {}
+
+	if is_git_repo() then
+		opts = {
+			cwd = get_git_root(),
+		}
+	end
+
+	require("telescope.builtin").live_grep(opts)
+end
+
 vim.keymap.set('n', '<F1>', telescope.git_files, { desc = "Telescope find files" })
-vim.keymap.set('n', '<F2>', telescope.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set('n', '<F2>', live_grep_from_project_git_root, { desc = "" })
 vim.keymap.set('n', '<F3>', telescope.grep_string, { desc = "Telescope grep string" })
 vim.keymap.set('n', '<F4>', jai_grep, { desc = "Grep jai" })
 
 -- LSP
-local lspconfig = require('lspconfig')
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -251,13 +225,13 @@ end
 
 -- run : `dotnet tool install --global csharp-ls`
 -- https://github.com/razzmatazz/csharp-language-server
-lspconfig['csharp_ls'].setup {
+vim.lsp.config('csharp_ls', {
     cmd = {"csharp-ls"},
     on_attach = on_attach,
-}
-lspconfig['clangd'].setup{
+})
+vim.lsp.config('clangd', {
     on_attach = on_attach,
-}
+})
 -- lspconfig['jails'].setup {
 --     on_attach = on_attach,
 --     cmd = { "jails" },
